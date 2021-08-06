@@ -10,7 +10,7 @@ app.use (
 		extended: true
 	})
 );
-app.use(cors());
+app.use(cors()); 
 
 //credenciales de acceso a Mongo estan en otro archivo para poder ignorarlas en git
 const db = require("./keys.js").mongoURI;

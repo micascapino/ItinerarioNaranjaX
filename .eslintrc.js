@@ -8,7 +8,7 @@ module.exports = {
 	"parserOptions": {
 		"ecmaVersion": 12
 	},
-	"rules": {
+	"rules": { 
 		"indent": ["error","tab"],
 		"linebreak-style": ["error","windows"],
 		"quotes": ["error","double"],

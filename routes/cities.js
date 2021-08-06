@@ -37,6 +37,6 @@ router.post("/", (req,res) => {
 			res.status(500).send("Error de servidor.");
 		});
 
-});
+}); 
 
 module.exports = router;
