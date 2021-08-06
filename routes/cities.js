@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const City = require("../models/cityModel");
+const Itinerary = require("../models/itineraryModel");
 
 //traer todas las ciudades
 router.get ("/all", (req, res) => {
@@ -40,14 +41,28 @@ router.post("/", (req,res) => {
 }); 
 
 //mostrar ciudad por nombre
-router.get ("/: name",
+router.get ("/:name",
 	(req, res) => {
-		let cityName = req.params.name;
+		let cityName = req.query.name;
 		City.findOne({name: cityName})
+			//esto va a encontrar la ciudad y devolver todos sus datos
 			.then(city => {
-				res.send(city);
+				//consigo el id de la ciudad para buscar el itinerario
+				const actualId = city._id;
+				Itinerary.findOne({cityId: actualId})
+					.then(iti => {
+						res.send(iti);
+					})
+					.catch(err => {
+						console.log(err);
+						res.send("No encontramos itinerarios para esta ciudad");
+					});
+				
 			})
-			.catch (err => console.log (err));
+			.catch (err => {
+				console.log (err);
+				res.send("Ciudad no encontrada");
+			});
 	}
 );
 
