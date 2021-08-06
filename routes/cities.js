@@ -39,4 +39,16 @@ router.post("/", (req,res) => {
 
 }); 
 
+//mostrar ciudad por nombre
+router.get ("/: name",
+	(req, res) => {
+		let cityName = req.params.name;
+		City.findOne({name: cityName})
+			.then(city => {
+				res.send(city);
+			})
+			.catch (err => console.log (err));
+	}
+);
+
 module.exports = router;
