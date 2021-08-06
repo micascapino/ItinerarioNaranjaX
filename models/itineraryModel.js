@@ -5,8 +5,8 @@ const itinerarySchema = new mongoose.Schema ({
 	title: { type: String, required: true },
 	img: { type: String, required: true },
 	activities: { 
-		name: {type: String},
-		img: {type: String}
+		name: { type: String },
+		img: { type: String }
 	},
 	authorName: { type: String, required: true },
 	authorPic: { type: String, required: true },
@@ -15,10 +15,10 @@ const itinerarySchema = new mongoose.Schema ({
 	likes: { type: Number, default: 0 },
 	hashtags: { type: [String] },
 	comments: {
-		userId: {type: mongoose.Schema.Types.ObjectId, ref: "user"},
-		text: {type: String},
-		userName: {type: String},
-		userPic: {type: String}
+		userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
+		text: { type: String },
+		userName: { type: String },
+		userPic: { type: String }
 	},
 	usersLike: { type: [String] },
 	cityId: { type: mongoose.Schema.Types.ObjectId, required: true }
