@@ -23,6 +23,7 @@ mongoose.connect(db, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTop
 
 //uso del modelo cities y sus rutas de acceso
 app.use("/cities", require ("./routes/cities"));
+app.use("/itineraries", require ("./routes/itineraries"));
 
 //confirmacion de conexion en el puerto especificado
 app.listen (port, () => {
