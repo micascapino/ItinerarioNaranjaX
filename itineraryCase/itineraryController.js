@@ -1,3 +1,3 @@
-const get = require("./getItineraries/getItineraries");
+const get = require("./services/getItineraries");
 
 module.exports = { get };
