@@ -1,14 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const Itinerary = require("../models/itineraryModel");
+const { Router } = require("../itineraryCase/itineraryModule");
+const router = new Router();
+const { get } = require("../itineraryCase/itineraryController");
 
 //traer todas los los itinerarios
-router.get ("/all", (req, res) => {
-	Itinerary.find({})
-		.then (data => {
-			res.send(data);
-		})
-		.catch (err => console.log (err));
-});
+router.get("/itineraries", get.getItineraries);
 
 module.exports = router;
