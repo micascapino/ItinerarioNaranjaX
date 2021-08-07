@@ -1,4 +1,4 @@
-const create = require("./createCity/createCity");
-const get = require("./getCities/getCities");
+const create = require("./services/createCity");
+const get = require("./services/getCities");
 
 module.exports = { create , get };
