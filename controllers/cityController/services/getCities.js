@@ -1,14 +1,14 @@
 const { City,  response  } = require('../cityModule')
 const cityRepository  = require('../../../repositories/cityRepository')
 const cityModel = require('../../../database/models/cityModel')
-const itineraryRepository  = require('../../../repositories/itineraryRepository')
 
 const getCities = async(req,  res = response) =>  { 
     try {
-        const citiesDb  = await cityRepository.getAll();
+        //data = cityDb
+        const data  = await cityRepository.getAll();
         const count = await cityRepository.count();  
 
-        if(!citiesDb){
+        if(!data){
             return  res.status(401).json({
                 ok: false,
                 message: "No hay ciudades en la base de datos",
@@ -17,7 +17,7 @@ const getCities = async(req,  res = response) =>  {
         res.status(200).json({
             ok: true,
             message:  "Ciudades:",
-            cities: citiesDb,
+            response: data,
             total: count
         })  
     }
@@ -35,8 +35,8 @@ const getCity = async(req,  res = response) =>  {
     const id  = req.params.id;
     
     try {
-        const cityDB  = await cityRepository.getOne(id);
-        if(!cityDB){
+        const data  = await cityRepository.getOne(id);
+        if(!data){
             return  res.status(401).json({
                 ok: false,
                 message: "No se encuentra esta ciudad en la base de datos",
@@ -45,7 +45,7 @@ const getCity = async(req,  res = response) =>  {
         res.status(200).json({
             ok: true,
             message:  "Ciudad:",
-            city: cityDB,
+            response: data,
         })  
     }
     catch (error) {
@@ -61,9 +61,9 @@ const getCity = async(req,  res = response) =>  {
 const getCityByQuery = async(req,  res = response) =>  { 
     const name  = req.query.name;
     try {
-        const cityDB  = await cityRepository.getCityByName(name);
+        const data  = await cityRepository.getCityByName(name);
 
-        if(!cityDB){
+        if(!data){
             return  res.status(401).json({
                 ok: false,
                 message: "No se encuentra esta ciudad en la base de datos",
@@ -72,7 +72,7 @@ const getCityByQuery = async(req,  res = response) =>  {
         return res.status(200).json({
             ok: true,
             message:  "Ciudad:",
-            cities: cityDB,
+            response: data,
         })  
     }
     catch (error) {
