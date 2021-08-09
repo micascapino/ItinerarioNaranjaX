@@ -8,8 +8,6 @@ router.get("/cities", get.getCities);
 router.get("/city/:id", get.getCity);
 //traer una ciudad con la query completa
 router.get("/city", get.getCityByQuery);
-//traer un itinerario con el nombre de la ciudad
-router.get("/city/:name", get.getItineraryByName);
 
 //crear una city nueva.
 router.post("/", create.createCity);

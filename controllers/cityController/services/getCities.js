@@ -84,34 +84,4 @@ const getCityByQuery = async(req,  res = response) =>  {
     }
 }
 
-const getItineraryByName = async(req,  res = response) =>  { 
-    const cityName  = req.query.name;
-    try {
-        const cityDB  = await cityRepository.getCityByName(cityName);
-
-        if(!cityDB){
-            return  res.status(401).json({
-                ok: false,
-                message: "No se encuentra esta ciudad en la base de datos",
-            })
-        }
-        //consigo el id de la ciudad para buscar el itinerario
-        const actualId = cityDB._id
-        const itineraryFound = await itineraryRepository.getItineraryByCityId(actualId);
-
-        return res.status(200).json({
-            ok: true,
-            message: `Itinerario para {cityName}`,
-            itinerary: itineraryFound,
-        })  
-    }
-    catch (error) {
-        res.status(500).json({
-            ok: false,
-            message:  "Error Interno del Servidor",
-            err: error
-        })
-    }
-}
-
-module.exports = { getCities, getCity, getCityByQuery, getItineraryByName };
+module.exports = { getCities, getCity, getCityByQuery };

@@ -1,6 +1,4 @@
 const { City , response } = require("../cityModule")
-// comentado para posible mejora despues
-//const cityRepository  = require('../../repositories/cityRepository')
 
 //Agregar nueva ciudad
 const createCity = async (req, res = response) => {
