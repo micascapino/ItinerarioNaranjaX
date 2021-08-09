@@ -1,8 +1,8 @@
-const { Router } = require("../itineraryCase/itineraryModule");
+const { Router } = require("../controllers/itineraryController/itineraryModule");
 const router = new Router();
-const { get } = require("../itineraryCase/itineraryController");
+const { get } = require("../controllers/itineraryController/itineraryController");
 
-//traer todas los los itinerarios
+//traer todas los itinerarios
 router.get("/itineraries", get.getItineraries);
 
 module.exports = router;

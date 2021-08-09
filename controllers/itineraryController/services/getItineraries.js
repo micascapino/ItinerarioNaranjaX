@@ -1,6 +1,6 @@
 const { Itinerary,  response  } = require('../itineraryModule')
-const itineraryRepository  = require('../../repositories/itineraryRepository')
-const itineraryModel = require('../../database/models/itineraryModel')
+const itineraryRepository  = require('../../../repositories/itineraryRepository')
+const itineraryModel = require('../../../database/models/itineraryModel')
 
 const getItineraries = async (req, res = response) => {
     try{

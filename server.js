@@ -21,9 +21,10 @@ mongoose.connect(db, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTop
 	.then(() => console.log ("Conexión a MongoDB establecida"))
 	.catch(err => console.log (err));
 
-//uso del modelo cities y sus rutas de acceso
+//uso de los modelos y sus rutas de acceso
 app.use("/cities", require ("./routes/cities"));
 app.use("/itineraries", require ("./routes/itineraries"));
+app.use("/users", require ("./routes/users"));
 
 //confirmacion de conexion en el puerto especificado
 app.listen (port, () => {

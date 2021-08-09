@@ -1,7 +1,7 @@
 const { City,  response  } = require('../cityModule')
-const cityRepository  = require('../../repositories/cityRepository')
-const cityModel = require('../../database/models/cityModel')
-const itineraryRepository  = require('../../repositories/itineraryRepository')
+const cityRepository  = require('../../../repositories/cityRepository')
+const cityModel = require('../../../database/models/cityModel')
+const itineraryRepository  = require('../../../repositories/itineraryRepository')
 
 const getCities = async(req,  res = response) =>  { 
     try {

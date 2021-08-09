@@ -1,6 +1,6 @@
-const { Router } = require("../cityCase/cityModule");
+const { Router } = require("../controllers/cityController/cityModule");
 const router = new Router();
-const { get, create } = require("../cityCase/cityController");
+const { get, create } = require("../controllers/cityController/cityController");
 
 //traer todas las ciudades
 router.get("/cities", get.getCities);
