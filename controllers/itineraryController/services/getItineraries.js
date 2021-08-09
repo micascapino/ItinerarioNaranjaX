@@ -30,9 +30,11 @@ const getItineraries = async (req, res = response) => {
     }
 }
 
+//pendiente de solucion, la base no lo muestra actualmente.
 const getItineraryByName = async(req,  res = response) =>  { 
     const cityName  = req.query.name;
     try {
+        //recibo el nombre de una ciudad, por ende busco esa ciudad en la base de datos.
         const cityDB  = await cityRepository.getCityByName(cityName);
 
         if(!cityDB){
