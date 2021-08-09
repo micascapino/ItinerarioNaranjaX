@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 const cors = require("cors");
 app.use (express.json ());
@@ -21,7 +21,7 @@ mongoose.connect(db, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTop
 	.catch(err => console.log (err));
 
 //uso de los modelos y sus rutas de acceso
-app.use("/cities", require ("./routes/cities"));
+app.use("/api", require ("./routes/cities"));
 app.use("/itineraries", require ("./routes/itineraries"));
 app.use("/users", require ("./routes/users"));
 
