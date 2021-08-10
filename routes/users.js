@@ -14,7 +14,7 @@ router.post("/register",
     check("password","Debes ingresar una contraseña valida").not().isEmpty().isLength({min: 6, max: 20}),    
     check("userPic","Debes ingresar una foto valida").isString().not().isEmpty(),
     check("country","Debes ingresar un pais valido").isAlpha().not().isEmpty().isLength({min: 3, max: 15}),
-    ]
-,create.createUser);
+    ],
+    create.createUser);
 
 module.exports = router;
