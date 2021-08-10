@@ -1,8 +1,19 @@
-const { City , response } = require("../cityModule")
+ const { City , response } = require("../cityModule")
 
 //Agregar nueva ciudad
 const createCity = async (req, res = response) => {
     let body = req.body;
+
+    //verifica que no exista antes de ingresarlo
+    const city = await City.findOne({"name": body.name},(err,user) => {
+        if (user){
+            return res.status(400).json({
+                ok:false,
+                message:"Esta ciudad ya fue creada"
+            });
+        }
+
+    });
 
     const newCity = new City({
         name: body.name,
@@ -10,8 +21,6 @@ const createCity = async (req, res = response) => {
         phrase: body.phrase,
         img: body.img
     });
-
-    //posible mejora, revisar que no exista antes de agregarlo
 
     await newCity.save( (err, cityDB) => {
         if (err){

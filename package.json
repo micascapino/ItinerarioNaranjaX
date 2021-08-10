@@ -9,10 +9,11 @@
   },
   "jest": {
     "testEnvironment": "node"
-    },    
+  },
   "author": "Micaela Scapino",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "concurrently": "^6.2.0",
     "cors": "^2.8.5",
