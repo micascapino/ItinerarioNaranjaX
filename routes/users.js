@@ -2,9 +2,11 @@ const { Router } = require("../controllers/userController/userModule");
 const router = new Router();
 const { get, post } = require("../controllers/userController/userController");
 const { check } = require('express-validator');
+const passport = require('passport');
 
 //traer todas los usuarios
 router.get("/users", get.getUsers);
+
 //crear un nuevo usuario
 router.post("/signup",
     [
@@ -18,7 +20,7 @@ router.post("/signup",
     post.signUp
 );
 
-//registrar inicio de sesion
+//inicio de sesion
 router.post('/login', 
     [
         check("mail", "El mail no es valido.").isEmail(),
@@ -26,5 +28,7 @@ router.post('/login',
     ],
     post.login
 );
+
+router.get('/signinls', passport.authenticate('jwt', { session: false }), get.loginls);
 
 module.exports = router;

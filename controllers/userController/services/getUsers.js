@@ -29,4 +29,22 @@ const getUsers = async (req, res = response) => {
     }
 }
 
-module.exports = { getUsers }
+const loginls = async(req, res = response) => {
+    try{
+        res.status(200).json({
+            success: true,
+            response: {
+                userPic: req.user.userPic, 
+                firstName: req.user.firstName   
+            }
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            success: false,
+            error
+        })
+    }
+}
+
+module.exports = { getUsers , loginls }
