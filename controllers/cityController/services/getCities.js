@@ -10,12 +10,12 @@ const getCities = async(req,  res = response) =>  {
 
         if(!data){
             return  res.status(401).json({
-                ok: false,
+                success: false,
                 message: "No hay ciudades en la base de datos",
             })
         }
         res.status(200).json({
-            ok: true,
+            success: true,
             message:  "Ciudades:",
             response: data,
             total: count
@@ -23,7 +23,7 @@ const getCities = async(req,  res = response) =>  {
     }
     catch (error) {
         res.status(500).json({
-            ok: false,
+            success: false,
             message:  "Error Interno del Servidor",
             err: error
         })
@@ -38,19 +38,19 @@ const getCity = async(req,  res = response) =>  {
         const data  = await cityRepository.getOne(id);
         if(!data){
             return  res.status(401).json({
-                ok: false,
+                success: false,
                 message: "No se encuentra esta ciudad en la base de datos",
             })
         }
         res.status(200).json({
-            ok: true,
+            success: true,
             message:  "Ciudad:",
             response: data,
         })  
     }
     catch (error) {
         res.status(500).json({
-            ok: false,
+            success: false,
             message:  "Error Interno del Servidor",
             err: error
         })
@@ -65,19 +65,19 @@ const getCityByQuery = async(req,  res = response) =>  {
 
         if(!data){
             return  res.status(401).json({
-                ok: false,
+                success: false,
                 message: "No se encuentra esta ciudad en la base de datos",
             })
         }
         return res.status(200).json({
-            ok: true,
+            success: true,
             message:  "Ciudad:",
             response: data,
         })  
     }
     catch (error) {
         res.status(500).json({
-            ok: false,
+            success: false,
             message:  "Error Interno del Servidor",
             err: error
         })

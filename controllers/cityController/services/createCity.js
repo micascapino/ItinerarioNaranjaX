@@ -15,7 +15,7 @@ const createCity = async (req, res = response) => {
         const city = await City.findOne({"name": body.name},(err,user) => {
             if (user){
                 return res.status(400).json({
-                    ok:false,
+                    success:false,
                     message:"Esta ciudad ya fue creada"
                 });
             }
@@ -31,7 +31,7 @@ const createCity = async (req, res = response) => {
         await newCity.save( (err, cityDB) => {
             if (cityDB){
                 return res.status(201).json({
-                    ok:true,
+                    success:true,
                     message:"La ciudad se creo correctamente",
                     cityDB
                 });
@@ -40,7 +40,7 @@ const createCity = async (req, res = response) => {
     }
     catch(error){
         return res.status(500).json({
-            ok:false,
+            success:false,
             message:"Error interno del servidor",
             err
         });

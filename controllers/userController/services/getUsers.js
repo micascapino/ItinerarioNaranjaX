@@ -9,12 +9,12 @@ const getUsers = async (req, res = response) => {
     
         if(!usersDB){
             return res.status(401).json({
-                ok:false,
+                success:false,
                 message: "No hay usuarios en la base de datos"
             })
         }
         res.status(200).json({
-            ok:true,
+            success:true,
             message: "Usuarios:",
             users: usersDB,
             total:count
@@ -22,7 +22,7 @@ const getUsers = async (req, res = response) => {
     }
     catch(error){
         res.status(500).json({
-            ok:false,
+            success:false,
             message:"Error interno del servidor",
             err,error
         })

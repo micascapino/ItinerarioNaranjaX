@@ -10,12 +10,12 @@ const getItineraries = async (req, res = response) => {
     
         if(!itinerariesDB){
             return res.status(401).json({
-                ok:false,
+                success:false,
                 message: "No hay itinerarios en la base de datos"
             })
         }
         res.status(200).json({
-            ok:true,
+            success:true,
             message: "Itinerarios:",
             itineraries: itinerariesDB,
             total:count
@@ -23,7 +23,7 @@ const getItineraries = async (req, res = response) => {
     }
     catch(error){
         res.status(500).json({
-            ok:false,
+            success:false,
             message:"Error interno del servidor",
             err,error
         })
@@ -39,7 +39,7 @@ const getItineraryByName = async(req,  res = response) =>  {
 
         if(!cityDB){
             return  res.status(401).json({
-                ok: false,
+                success: false,
                 message: "No se encuentra esta ciudad en la base de datos",
             })
         }
@@ -48,14 +48,14 @@ const getItineraryByName = async(req,  res = response) =>  {
         const itineraryFound = await itineraryRepository.getItineraryByCityId(actualId);
 
         return res.status(200).json({
-            ok: true,
+            success: true,
             message: `Itinerario para {cityName}`,
             itinerary: itineraryFound,
         })  
     }
     catch (error) {
         res.status(500).json({
-            ok: false,
+            success: false,
             message:  "Error Interno del Servidor",
             err: error
         })

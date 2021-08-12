@@ -21,7 +21,7 @@ const signUp = async (req, res = response) => {
         //por que no funciona?
         if (!userDB){
             return res.status(400).json({
-                ok:false,
+                success:false,
                 message:"El mail ya esta registrado con otro usuario"
             });
         }
@@ -50,7 +50,7 @@ const signUp = async (req, res = response) => {
     }
     catch(error){
         return res.status(500).json({
-            ok:false,
+            success:false,
             message:"Error interno del servidor",
             error
         });
@@ -72,7 +72,7 @@ const login = async(req, res = response) => {
         //si no encuentra al usuario da un error
         if (!userDB) {
             return res.status(400).json({
-                ok: false,
+                success: false,
                 msg: 'El usuario no existe'
             });
         }
@@ -82,7 +82,7 @@ const login = async(req, res = response) => {
         
         if (!correctPass) {
             return res.status(401).json({
-                ok: false,
+                success: false,
                 msg: 'La contraseña es incorrecta'
             });
         }
