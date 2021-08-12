@@ -1,6 +1,7 @@
 const { Router } = require("../controllers/cityController/cityModule");
 const router = new Router();
 const { get, create } = require("../controllers/cityController/cityController");
+const { check } = require('express-validator');
 
 //traer todas las ciudades
 router.get("/cities", get.getCities);

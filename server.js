@@ -1,4 +1,5 @@
 const { app , port } = require("./app");
+require('./passport');
 
 //confirmacion de conexion en el puerto especificado
 app.listen (port, () => {

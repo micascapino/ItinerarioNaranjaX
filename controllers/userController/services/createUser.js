@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator');
 //Agregar un nuevo usuario
 const createUser = async (req, res = response) => {
     let body = req.body;
-    
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
@@ -15,14 +15,13 @@ const createUser = async (req, res = response) => {
 
     try{
         //verifica que no exista antes de ingresarlo
-        const userDB = await User.findOne({"mail": body.mail},(err,user) => {
-            if (user){
+        const userDB = await userRepository.getUserByMail(body.mail)
+            if (!userDB){
                 return res.status(400).json({
                     ok:false,
                     message:"El mail ya esta registrado con otro usuario"
                 });
             }
-        });
 
         const newUser = new User({
             firstName: body.firstName,
