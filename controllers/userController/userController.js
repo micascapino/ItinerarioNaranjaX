@@ -1,4 +1,4 @@
 const get = require("./services/getUsers");
-const create = require("./services/createUser");
+const post = require("./services/postUsers");
 
-module.exports = { get, create };
+module.exports = { get, post };

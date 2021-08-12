@@ -1,12 +1,12 @@
 const { Router } = require("../controllers/userController/userModule");
 const router = new Router();
-const { get, create } = require("../controllers/userController/userController");
+const { get, post } = require("../controllers/userController/userController");
 const { check } = require('express-validator');
 
 //traer todas los usuarios
 router.get("/users", get.getUsers);
 //crear un nuevo usuario
-router.post("/register",
+router.post("/signup",
     [
     check("firstName","Debes ingresar un nombre valido").isAlpha().not().isEmpty().isLength({min: 3, max: 15}),
     check("lastName","Debes ingresar un apellido valido").isAlpha().not().isEmpty().isLength({min: 3, max: 15}),
@@ -15,6 +15,16 @@ router.post("/register",
     check("userPic","Debes ingresar una foto valida").isString().not().isEmpty(),
     check("country","Debes ingresar un pais valido").isAlpha().not().isEmpty().isLength({min: 3, max: 15}),
     ],
-    create.createUser);
+    post.signUp
+);
+
+//registrar inicio de sesion
+router.post('/login', 
+    [
+        check("mail", "El mail no es valido.").isEmail(),
+        check("password", "La contraseña no es valida").not().isEmpty(),
+    ],
+    post.login
+);
 
 module.exports = router;
