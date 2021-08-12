@@ -2,7 +2,7 @@ const key = require ("../../../keys");
 const bcrypt = require("bcrypt");
 const jwt = require ("jsonwebtoken"); 
 const { validationResult } = require('express-validator');
-
+const { userRepository } = require("../authModule");
 const login = async(req, res = response) => {
     
     const errores = validationResult(req);
