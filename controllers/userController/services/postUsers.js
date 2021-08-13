@@ -16,7 +16,7 @@ const signUp = async (req, res = response) => {
 
     try{
         //verifica que no exista antes de ingresarlo
-        const userDB = await userRepository.getUserByMail(body.mail);
+        const userDB = await userRepository.getUserByMail(body.email);
         console.log(userDB)
         //por que no funciona?
         if (!userDB){
@@ -29,7 +29,7 @@ const signUp = async (req, res = response) => {
         const newUser = new User({
             firstName: body.firstName,
             lastName: body.lastName,
-            mail: body.mail,
+            mail: body.email,
             password: await bcrypt.hash(body.password,saltRounds),
             userPic: body.userPic,
             country: body.country,
@@ -66,7 +66,8 @@ const login = async(req, res = response) => {
     };
 
     try{
-        const { mail, password } = req.body;
+        const mail = req.body.email;
+        const password = req.body.password;
         //si el usuario existe, compare las contraseñas con la función de comparación de bycript
         let userDB = await userRepository.getUserByMail(mail);
         //si no encuentra al usuario da un error
