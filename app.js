@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 4000;
+const passport = require('passport');
 
 const cors = require("cors");
 app.use (express.json ());
@@ -23,6 +24,9 @@ mongoose.connect(db, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTop
 //uso de los modelos y sus rutas de acceso
 app.use("/api", require ("./routes/cities"));
 app.use("/api/itineraries", require ("./routes/itineraries"));
+app.use('/api/checkuser/:id', passport.authenticate('jwt', { session: false }), require('./controllers/itineraryController/itineraryController').checkUser);
+app.use('/api/like/:id', passport.authenticate('jwt', { session: false }), require('./controllers/itineraryController/itineraryController').like);
 app.use("/api/user", require ("./routes/users"));
+app.use('/api/comments', require('./routes/comments'));
 
 module.exports = { port, app };

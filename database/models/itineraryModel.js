@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
 
+const CommentSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId },
+    text: { type: String },
+	userName: { type: String },
+    userPic: { type: String }
+});
+
 //implementacion del modelo itinerary
 const itinerarySchema = new mongoose.Schema ({
 	title: { type: String, required: true },

@@ -29,7 +29,7 @@ const getUsers = async (req, res = response) => {
     }
 }
 
-const loginls = async(req, res = response) => {
+const signinls = async(req, res = response) => {
     try{
         res.status(200).json({
             success: true,
@@ -47,4 +47,4 @@ const loginls = async(req, res = response) => {
     }
 }
 
-module.exports = { getUsers , loginls }
+module.exports = { getUsers , signinls }

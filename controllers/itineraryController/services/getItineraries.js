@@ -62,4 +62,64 @@ const getItineraryByName = async(req,  res = response) =>  {
     }
 }
 
-module.exports = { getItineraries, getItineraryByName }
+const getItineraryById = async(req,  res = response) =>  { 
+    const id  = req.params.id;
+    try {
+        //recibo el nombre de una ciudad, por ende busco esa ciudad en la base de datos.
+        const itinerary  = await itineraryRepository.getItineraryById(id);
+
+        if(!itinerary){
+            return  res.status(401).json({
+                success: false,
+                message: "No se encuentra este itinerario en la base de datos",
+            })
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: `Itinerario`,
+            itinerary: itinerary,
+        })  
+    }
+    catch (error) {
+        res.status(500).json({
+            success: false,
+            message:  "Error Interno del Servidor",
+            err: error
+        })
+    }
+}
+
+
+//ver
+const getCommentsByItinerary = async (req, res = response) => {
+    const id = req.params.id
+    try{
+        //voy a necesitar traer un itinerario por id que entra por parametro
+        const itineraryFound = await itineraryRepository.getItineraryById(id);
+    
+        if(!itineraryFound){
+            return res.status(401).json({
+                success:false,
+                message: "No encuentro el itinerario"
+            })
+        }
+        console.log(itineraryFound);
+
+        res.status(200).json({
+            success:true,
+            message: "Comentarios:",
+            itineraryFound
+        })
+    }
+    catch(error){
+        res.status(500).json({
+            success:false,
+            message:"Error interno del servidor",
+            err,error
+        })
+    }
+}
+
+
+module.exports = { getItineraries, getItineraryByName, getCommentsByItinerary }

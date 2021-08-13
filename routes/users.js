@@ -29,6 +29,6 @@ router.post('/signin',
     post.login
 );
 
-router.get('/signinls', passport.authenticate('jwt', { session: false }), get.loginls);
+router.get('/signinls', passport.authenticate('jwt', { session: false }), get.signinls);
 
 module.exports = router;

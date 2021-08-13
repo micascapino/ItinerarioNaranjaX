@@ -4,9 +4,9 @@ const { get, create } = require("../controllers/cityController/cityController");
 const { check } = require('express-validator');
 
 //traer todas las ciudades
-router.get("/cities", get.getCities);
+router.get("/", get.getCities);
 //traer una ciudad
-router.get("/city/:id", get.getCity);
+router.get("/:id", get.getCity);
 //traer una ciudad con la query completa
 router.get("/city", get.getCityByQuery);
 
