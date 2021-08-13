@@ -10,12 +10,12 @@ router.get("/users", get.getUsers);
 //crear un nuevo usuario
 router.post("/signup",
     [
-    check("firstName","Debes ingresar un nombre valido").isAlpha().not().isEmpty().isLength({min: 3, max: 15}),
-    check("lastName","Debes ingresar un apellido valido").isAlpha().not().isEmpty().isLength({min: 3, max: 15}),
+    check("firstName","Debes ingresar un nombre valido").isString().isLength({min: 3, max: 15}),
+    check("lastName","Debes ingresar un apellido valido").isAlpha().isLength({min: 3, max: 15}),
     check("email","Debes ingresar un mail valido").isEmail(),
     check("password","Debes ingresar una contraseña valida").not().isEmpty().isLength({min: 6, max: 20}),    
     check("userPic","Debes ingresar una foto valida").isString().not().isEmpty(),
-    check("country","Debes ingresar un pais valido").isAlpha().not().isEmpty().isLength({min: 3, max: 15}),
+    check("country","Debes ingresar un pais valido").isString().isLength({min: 3, max: 25}),
     ],
     post.signUp
 );
