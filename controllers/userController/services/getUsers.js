@@ -17,7 +17,7 @@ const getUsers = async (req, res = response) => {
         res.status(200).json({
             success:true,
             message: "Usuarios:",
-            users: usersDB,
+            response: usersDB,
             total:count
         })
     }

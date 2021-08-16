@@ -6,7 +6,7 @@ const { check } = require('express-validator');
 //traer todas las ciudades
 router.get("/cities", get.getCities);
 //traer una ciudad
-router.get("/:id", get.getCity);
+router.get("/city/:id", get.getCity);
 //traer una ciudad con la query completa /* SOLO USO INTERNO EN POSTMAN */
 router.get("/city", get.getCityByQuery);
 

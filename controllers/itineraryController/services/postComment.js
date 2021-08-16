@@ -4,36 +4,52 @@ const itineraryRepository  = require('../../../repositories/itineraryRepository'
 
 //Agregar nueva ciudad
 const postComment = async (req, res = response) => {
-    const itineraryId = req.params.id;
-
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
-    }
+    const user = req.user;
+    const id = req.params.id;
+    const text = req.body;
+    let commentsId = [];
 
     try{
-        //buscar el itinerario
-        const itinerary = itineraryRepository.getItineraryById(itineraryId);
+        const itineraryDB = await itineraryRepository.getItineraryById(id);
+        if (!itineraryDB) {
+            return res.status(404).json({
+                success: false,
+                message: "No se encontro el itinerario",
+            });
+        }
+        let {comments} = itineraryDB;
 
-        const newComment = new itinerary.comments({
-            userId: req.params.userId,
-            text: req.body.text,
-            userName: req.params.userName,
-            userPic: req.params.userPic,
+        //armar el comentario con los datos
+        var newComment = {
+            userId: user._id,
+            text,
+            userName: user.firstName,
+            userPic: user.userPic
+        }
+
+        comments.push(newComment);
+        comments.forEach((comment) => {
+            if (comment.userId.toString().trim() == req.user._id.toString().trim()) {
+                commentsId.push(comment._id);
+            }
         });
 
-        Itinerary.comments.push(newComment);
-        return res.status(201).json({
+        itineraryRepository.postComments(comments,id);
+
+        return res.status(200).json({
             success:true,
             message:"El comentario se agrego correctamente",
-            newComment
+            response: {
+                response: comments,
+                arrayOwnerCheck: commentsId
+            }
         });
     }
     catch(error){
         return res.status(500).json({
             success:false,
             message:"Error interno del servidor",
-            err
+            error
         });
     }
 }

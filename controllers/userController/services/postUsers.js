@@ -17,8 +17,7 @@ const signUp = async (req, res = response) => {
     try{
         //verifica que no exista antes de ingresarlo
         const userDB = await userRepository.getUserByMail(body.email);
-        console.log(userDB)
-        //por que no funciona?
+
         if (!userDB){
             return res.status(400).json({
                 success:false,

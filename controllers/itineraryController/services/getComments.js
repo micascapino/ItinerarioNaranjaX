@@ -15,12 +15,11 @@ const getCommentsByItinerary = async (req, res = response) => {
                 message: "No encuentro el itinerario"
             })
         }
-        console.log(itineraryFound);
 
         res.status(200).json({
             success:true,
             message: "Comentarios:",
-            itineraryFound
+            response: itineraryFound
         })
     }
     catch(error){
