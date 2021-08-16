@@ -2,7 +2,7 @@ const itineraryRepository = require('../../../repositories/itineraryRepository')
 
 const like = async (req, res) => {
     try {
-        const itinerary = await itineraryRepository.getById(req.params.id);
+        const itinerary = await itineraryRepository.getItineraryById(req.params.id);
         if (!itinerary) {
             return res.status(404).json({
                 success:false,

@@ -32,21 +32,15 @@ const getItineraries = async (req, res = response) => {
 
 //pendiente de solucion, la base no lo muestra actualmente.
 const getItineraryByName = async(req,  res = response) =>  { 
-    const cityName  = req.query.name;
     try {
-        //recibo el nombre de una ciudad, por ende busco esa ciudad en la base de datos.
-        const cityDB  = await cityRepository.getCityByName(cityName);
-
-        if(!cityDB){
-            return  res.status(401).json({
+        const cityId = req.params.cityId;
+        const itineraryFound = await itineraryRepository.getItineraryByCityId(cityId);
+        if (!itineraryFound){
+            return res.status(400).json({
                 success: false,
-                message: "No se encuentra esta ciudad en la base de datos",
-            })
+                message: "No se encuentra itinerario para esta ciudad."
+            })  
         }
-        //consigo el id de la ciudad para buscar el itinerario
-        const actualId = cityDB._id
-        const itineraryFound = await itineraryRepository.getItineraryByCityId(actualId);
-
         return res.status(200).json({
             success: true,
             message: `Itinerario para {cityName}`,
@@ -74,7 +68,7 @@ const getItineraryById = async(req,  res = response) =>  {
                 message: "No se encuentra este itinerario en la base de datos",
             })
         }
-
+        console.log(itinerary)
         return res.status(200).json({
             success: true,
             message: `Itinerario`,

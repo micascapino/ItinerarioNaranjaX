@@ -3,17 +3,10 @@ const cityRepository  = require('../../../repositories/cityRepository')
 const cityModel = require('../../../database/models/cityModel')
 
 const getCities = async(req,  res = response) =>  { 
+
     try {
-        //data = cityDb
         const data  = await cityRepository.getAll();
         const count = await cityRepository.count();  
-
-        if(!data){
-            return  res.status(401).json({
-                success: false,
-                message: "No hay ciudades en la base de datos",
-            })
-        }
         res.status(200).json({
             success: true,
             message:  "Ciudades:",
@@ -30,7 +23,6 @@ const getCities = async(req,  res = response) =>  {
     }
 }
 
-//no funcional por el momento
 const getCity = async(req,  res = response) =>  { 
     const id  = req.params.id;
     
@@ -57,7 +49,6 @@ const getCity = async(req,  res = response) =>  {
     }
 }
 
-//no funcional por el momento
 const getCityByQuery = async(req,  res = response) =>  { 
     const name  = req.query.name;
     try {

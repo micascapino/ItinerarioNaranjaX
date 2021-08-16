@@ -4,12 +4,11 @@ const router = express.Router();
 const itineraryController = require('../controllers/itineraryController/itineraryController');
 const { check } = require('express-validator');
 
-router.post("/", passport.authenticate('jwt', { session: false }),
-    [check("text","Debes ingresar un texto valido").isString().isLength({min: 3, max: 200}),],
-    itineraryController.addComment);
+router.post("/id", passport.authenticate('jwt', { session: false }), [check("text","Debes ingresar un texto valido").isString().isLength({min: 3, max: 200})],
+    itineraryController.postComment.postComment);
 
 router.put("/:id", passport.authenticate('jwt', { session: false }),
-    check("text","Debes ingresar un texto valido").isString().isLength({min: 3, max: 200}),
+    [check("text","Debes ingresar un texto valido").isString().isLength({min: 3, max: 200}),],
     itineraryController.editComment);
 
 router.delete('/:id', passport.authenticate('jwt', { session: false }), itineraryController.deleteComment);

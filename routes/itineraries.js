@@ -1,18 +1,11 @@
 const { Router } = require("../controllers/itineraryController/itineraryModule");
 const router = new Router();
-const { get, getComments, postComment } = require("../controllers/itineraryController/itineraryController");
+const itineraryController = require("../controllers/itineraryController/itineraryController");
 
-//traer todas los itinerarios
-router.get("/itineraries", get.getItineraries);
-//traer irtinerario por nombre de ciudad
-router.get("/:name", get.getItineraryByName);
-
-router.get("/:id", get.getItineraryByName);
-//obtener datos especificos de itinerario
-
-//comentarios y likes
-router.get("/comments/:id", get.getCommentsByItinerary);
-router.post("/comments/:id", postComment.postComment);
-//crear itinerario
+//traer todas los itinerarios 
+router.get("/all", itineraryController.get.getItineraries);
+//traer irtinerario por id de ciudad
+router.get("/:cityId", itineraryController.get.getItineraryByName);
+router.get('/checkuser/:id', itineraryController.checkUser);
 
 module.exports = router;

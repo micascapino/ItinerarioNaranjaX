@@ -5,6 +5,7 @@ const { check } = require('express-validator');
 const passport = require('passport');
 
 //traer todas los usuarios
+/* SOLO USO INTERNO EN POSTMAN */
 router.get("/users", get.getUsers);
 
 //crear un nuevo usuario

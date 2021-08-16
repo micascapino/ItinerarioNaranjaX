@@ -2,6 +2,7 @@ const { User,  response  } = require('../userModule')
 const userRepository  = require('../../../repositories/userRepository')
 const userModel = require('../../../database/models/userModel')
 
+/* SOLO USO INTERNO EN POSTMAN */
 const getUsers = async (req, res = response) => {
     try{
         const usersDB = await userRepository.getAll();
