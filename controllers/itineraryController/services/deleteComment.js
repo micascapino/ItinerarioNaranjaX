@@ -1,9 +1,9 @@
-const itineraryRepository = require('../../../repositories/itineraryRepository');
+const itineraryRepository = require("../../../repositories/itineraryRepository");
 
 const deleteComment = async (req, res) => {
     try {
         const { id: commentId } = req.params;
-        const itinerary = await itineraryRepository.getbyCommentId(commentId,req.user._id)
+        const itinerary = await itineraryRepository.getbyCommentId(commentId,req.user._id);
         if(!itinerary){
             return res.status(404).json({
                 success:false,

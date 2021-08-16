@@ -1,7 +1,6 @@
-const { Itinerary,  response  } = require('../itineraryModule')
-const itineraryRepository  = require('../../../repositories/itineraryRepository')
-const itineraryModel = require('../../../database/models/itineraryModel')
-const cityRepository  = require('../../../repositories/cityRepository')
+const { response  } = require("../itineraryModule");
+const itineraryRepository  = require("../../../repositories/itineraryRepository");
+
 
 const getItineraries = async (req, res = response) => {
     try{
@@ -9,7 +8,7 @@ const getItineraries = async (req, res = response) => {
         if (itinerariesDB.length === 0) {
             return res.status(401).json({
                 success: false,
-                message: 'No hay registros en la base de datos'
+                message: "No hay registros en la base de datos"
             });
         }
 
@@ -20,16 +19,16 @@ const getItineraries = async (req, res = response) => {
             message: "Itinerarios:",
             response: itinerariesDB,
             total:count
-        })
+        });
     }
     catch(error){
         res.status(500).json({
             success:false,
             message:"Error interno del servidor",
-            err,error
-        })
+            error
+        });
     }
-}
+};
 
 //pendiente de solucion, la base no lo muestra actualmente.
 const getItineraryByName = async(req,  res = response) =>  { 
@@ -40,21 +39,21 @@ const getItineraryByName = async(req,  res = response) =>  {
             return res.status(400).json({
                 success: false,
                 message: "No se encuentra itinerario para esta ciudad."
-            })  
+            });  
         }
         res.status(200).json({
             success: true,
             message: "Itinerarios",
             response: itineraryFound,
-        })  
+        });  
     }
     catch (error) {
         res.status(500).json({
             success: false,
             message:  "Error Interno del Servidor",
             err: error
-        })
+        });
     }
-}
+};
 
-module.exports = { getItineraries, getItineraryByName }
+module.exports = { getItineraries, getItineraryByName };

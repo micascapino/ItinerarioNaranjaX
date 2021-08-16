@@ -1,4 +1,4 @@
-const itineraryRepository = require('../../../repositories/itineraryRepository');
+const itineraryRepository = require("../../../repositories/itineraryRepository");
 
 const checkUser = async (req, res) => {
     try {
@@ -15,7 +15,7 @@ const checkUser = async (req, res) => {
                 arrayOwnerCheck: itinerary.comments.filter(comment => comment.userId.toString() === req.user._id.toString()).map(comment => comment._id),
                 likedCheck: itinerary.usersLike.includes(req.user._id.toString())
             }
-        })
+        });
     }
     catch (error) {
         res.status(500).json({
@@ -23,6 +23,6 @@ const checkUser = async (req, res) => {
             error
         });
     }
-}
+};
 
 module.exports = checkUser;

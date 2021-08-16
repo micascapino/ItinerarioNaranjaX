@@ -1,4 +1,4 @@
-const itineraryRepository = require('../../../repositories/itineraryRepository');
+const itineraryRepository = require("../../../repositories/itineraryRepository");
 
 const like = async (req, res) => {
     try {
@@ -6,8 +6,8 @@ const like = async (req, res) => {
         if (!itinerary) {
             return res.status(404).json({
                 success:false,
-                response: ('No existe el itinerario')
-            })  
+                response: ("No existe el itinerario")
+            });  
         }
         const userId = req.user._id.toString();
         if (itinerary.usersLike.includes(userId)) {
@@ -32,6 +32,6 @@ const like = async (req, res) => {
             error
         });
     }
-}
+};
 
 module.exports = like;

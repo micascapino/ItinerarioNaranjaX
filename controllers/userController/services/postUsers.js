@@ -2,7 +2,7 @@ const { User, response } = require("../userModule");
 const userRepository = require("../../../repositories/userRepository");
 const bcrypt = require("bcrypt");
 const saltRounds  = 12;
-const { validationResult } = require('express-validator');
+const { validationResult } = require("express-validator");
 const key = require ("../../../keys");
 const jwt = require ("jsonwebtoken"); 
 
@@ -15,10 +15,10 @@ const signUp = async (req, res = response) => {
     }
 
     try{
-        //verifica que no exista antes de ingresarlo
+    //verifica que no exista antes de ingresarlo
         const userDB = await userRepository.getUserByMail(body.email);
 
-        if (!userDB){
+        if (userDB){
             return res.status(400).json({
                 success:false,
                 message:"El mail ya esta registrado con otro usuario"
@@ -45,7 +45,7 @@ const signUp = async (req, res = response) => {
                     },
                 });
             }
-        })
+        });
     }
     catch(error){
         return res.status(500).json({
@@ -54,7 +54,7 @@ const signUp = async (req, res = response) => {
             error
         });
     }
-}
+};
 
 
 const login = async(req, res = response) => {
@@ -62,7 +62,7 @@ const login = async(req, res = response) => {
     const errores = validationResult(req);
     if( !errores.isEmpty() ){
         return res.status(400).json({ errores: errores.array() });
-    };
+    }
 
     try{
         const mail = req.body.email;
@@ -73,7 +73,7 @@ const login = async(req, res = response) => {
         if (!userDB) {
             return res.status(400).json({
                 success: false,
-                msg: 'El usuario no existe'
+                msg: "El usuario no existe"
             });
         }
 
@@ -83,7 +83,7 @@ const login = async(req, res = response) => {
         if (!correctPass) {
             return res.status(401).json({
                 success: false,
-                msg: 'La contraseña es incorrecta'
+                msg: "La contraseña es incorrecta"
             });
         }
 
@@ -123,8 +123,8 @@ const login = async(req, res = response) => {
         return res.json({
             success: false,
             error
-        })
+        });
     }
-}
+};
 
 module.exports = { signUp, login };

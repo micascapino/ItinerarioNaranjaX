@@ -1,12 +1,11 @@
-const { Itinerary , response } = require("../itineraryModule")
-const { validationResult } = require('express-validator');
-const itineraryRepository  = require('../../../repositories/itineraryRepository')
+const { response } = require("../itineraryModule");
+const itineraryRepository  = require("../../../repositories/itineraryRepository");
 
 //Agregar nueva ciudad
 const postComment = async (req, res = response) => {
     const user = req.user;
     const id = req.params.id;
-    const text = req.body;
+    const text = req.body.text;
     let commentsId = [];
 
     try{
@@ -22,10 +21,10 @@ const postComment = async (req, res = response) => {
         //armar el comentario con los datos
         var newComment = {
             userId: user._id,
-            text,
+            text: text,
             userName: user.firstName,
             userPic: user.userPic
-        }
+        };
 
         comments.push(newComment);
         comments.forEach((comment) => {
@@ -52,6 +51,6 @@ const postComment = async (req, res = response) => {
             error
         });
     }
-}
+};
 
 module.exports = { postComment };

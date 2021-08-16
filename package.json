@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --runInBand",
-    "start": "concurrently \" nodemon server.js\"\"cd../client && npm start\""
+    "start": "concurrently \" nodemon server.js\"\"cd../client && npm start\"",
+    "lint-fix": "eslint . --ext .js --fix"
   },
   "jest": {
     "testEnvironment": "node"

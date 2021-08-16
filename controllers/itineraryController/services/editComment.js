@@ -1,13 +1,12 @@
-const itineraryRepository = require('../../../repositories/itineraryRepository');
+const itineraryRepository = require("../../../repositories/itineraryRepository");
 
 const editComment = async (req, res) => {
     try {
-        const { user } = req;
-        //id del comentario
-        const { id } = req.params;
-        const { text } = req.body;
+        const user = req.user;
+        const id = req.params.id;
+        const text = req.body.text;
 
-        const itinerary = await itineraryRepository.getbyCommentId(commentId,user._id)
+        const itinerary = await itineraryRepository.getbyCommentId(id,user._id);
         
         if(!itinerary){
             return res.status(404).json({
@@ -16,7 +15,7 @@ const editComment = async (req, res) => {
             });   
         }
         
-        itineraryDB = await itineraryRepository.editComment(id, text);
+        const itineraryDB = await itineraryRepository.editComment(id, text);
         
         return res.status(200).json({
             success:true,

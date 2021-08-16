@@ -1,5 +1,5 @@
-const { City , response } = require("../cityModule")
-const { validationResult } = require('express-validator');
+const { City , response } = require("../cityModule");
+const { validationResult } = require("express-validator");
 
 //Agregar nueva ciudad
 const createCity = async (req, res = response) => {
@@ -11,8 +11,8 @@ const createCity = async (req, res = response) => {
     }
 
     try{
-        //verifica que no exista antes de ingresarlo
-        const city = await City.findOne({"name": body.name},(err,user) => {
+    //verifica que no exista antes de ingresarlo
+        await City.findOne({"name": body.name},(err,user) => {
             if (user){
                 return res.status(400).json({
                     success:false,
@@ -36,15 +36,15 @@ const createCity = async (req, res = response) => {
                     cityDB
                 });
             }
-        })
+        });
     }
     catch(error){
         return res.status(500).json({
             success:false,
             message:"Error interno del servidor",
-            err
+            error
         });
     }
-}
+};
 
 module.exports = { createCity };
